@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BloggingDemo.Entities;
 using System.Data.Entity;
 using BloggingDemo.DAL;
+using static System.Console; // no console.writeline, console.readline etc needed
 
 namespace BloggingDemo
 {
@@ -23,6 +24,18 @@ namespace BloggingDemo
             //Display the blogs in the database
             using (var context = new BloggingContext())
             {
+                //Create and save a new blog
+                Write("Enter a name for the new blog >> ");
+                var name = ReadLine();
+
+                var blog = new Blog
+                {
+                    Name = name
+                };
+
+                context.Blogs.Add(blog);
+                context.SaveChanges();
+
                 //Display all blogs from the database
                 List<Blog> blogs = context.Blogs.ToList();
                 DisplayBlogNames(blogs);
@@ -33,13 +46,13 @@ namespace BloggingDemo
         {
             foreach(var item in blogs)
             {
-                Console.WriteLine(item.Name);
+                WriteLine(item.Name);
             }
         }
 
         private void Welcome()
         {
-            Console.WriteLine("Blogging Demo Program");
+            WriteLine("Blogging Demo Program");
         }
     }
 
