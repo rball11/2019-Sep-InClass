@@ -22,6 +22,7 @@ namespace WestWindSystem.BLL
             }
         }
         #endregion
+
         #region Suppliers CRUD
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Supplier> ListSuppliers()
@@ -32,6 +33,7 @@ namespace WestWindSystem.BLL
             }
         }
         #endregion
+
         #region Categories CRUD
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Category> ListCategories()
@@ -42,6 +44,7 @@ namespace WestWindSystem.BLL
             }
         }
         #endregion
+
         #region Addresses CRUD
         [DataObjectMethod(DataObjectMethodType.Select)]
         public List<Address> ListAddresses()

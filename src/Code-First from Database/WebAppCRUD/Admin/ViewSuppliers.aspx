@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>View Suppliers</h1>
 
-    <asp:GridView ID="SupplierGridView" runat="server" AutoGenerateColumns="False" DataSourceID="SuppliersDataSource" CssClass="table table-hover" HeaderStyle-BackColor="ControlLight">
+<%--    <asp:GridView ID="SupplierGridView" runat="server" AutoGenerateColumns="False" DataSourceID="SuppliersDataSource" CssClass="table table-hover" HeaderStyle-BackColor="ControlLight">
         <Columns>
             <asp:BoundField DataField="SupplierID" HeaderText="SupplierID" SortExpression="SupplierID"></asp:BoundField>
             <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName"></asp:BoundField>
@@ -13,7 +13,24 @@
             <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone"></asp:BoundField>
             <asp:BoundField DataField="Fax" HeaderText="Fax" SortExpression="Fax"></asp:BoundField>
         </Columns>
+    </asp:GridView>--%>
 
-    </asp:GridView>
+    <asp:ListView ID="SuppliersListView" runat="server" DataSourceID="SuppliersDataSource"
+        ItemType="WestWindSystem.Entities.Supplier">
+        <LayoutTemplate>
+            <blockquote>
+                <div id="itemPlaceHolder" runat="server"></div>
+            </blockquote>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <div>
+                <b><%# Item.CompanyName %></b>
+                &ndash;
+                <i><%# Item.ContactName %></i>
+                (<%# Item.ContactTitle %> - <%# Item.Phone %>)
+            </div>
+        </ItemTemplate>
+    </asp:ListView>
+
     <asp:ObjectDataSource runat="server" ID="SuppliersDataSource" OldValuesParameterFormatString="original_{0}" SelectMethod="ListSuppliers" TypeName="WestWindSystem.BLL.CRUDController"></asp:ObjectDataSource>
 </asp:Content>
